@@ -83,3 +83,6 @@ USE SCHEMA    IDENTIFIER($SRC_SCHEMA);
 -- The benefit: native CREATED/DELETED history per object, so no snapshot
 -- table to maintain and dropped objects don't just silently vanish -- at the
 -- cost of up to ~3hrs of latency on that history.
+
+
+
