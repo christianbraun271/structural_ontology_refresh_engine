@@ -1,7 +1,7 @@
 # Ontology Refresh Engine — Run Book
 
-One-page checklist for running this demo end to end. Run everything in order
-top to bottom on first setup; for a repeat run, jump to **Cycle** below.
+One-page checklist for running this demo end to end. 
+Run everything in order top to bottom on first setup; for a repeat run, jump to **Cycle** below.
 
 ## 1. One-time setup
 
@@ -44,3 +44,4 @@ top to bottom on first setup; for a repeat run, jump to **Cycle** below.
 
 - Actually applying generated/reviewed code to `ONT_*` tables (the second, technical human gate) — deliberately deferred; nothing under `sql/06_apply` exists yet.
 - Scheduling/automation (Tasks, cron) — this demo is run manually end to end; automating the detection cycle is a natural next step once the manual flow is validated.
+
