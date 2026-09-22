@@ -1,6 +1,6 @@
 -- =============================================================================
 -- 03_ddl_v2_delta.sql
--- "Week 1" schema changes. Do NOT run this until you've run the full refresh
+-- "Week 1" or "Next Quarter" schema changes. Do NOT run this until you've run the full refresh
 -- cycle once against v1 (sql/02_ontology + an initial 03_refresh_engine pass
 -- with zero deltas) so you have a clean baseline to diff from.
 --
