@@ -1,5 +1,5 @@
 """
-queries.py -- every SQL / Snowpark call the Control Plane app makes, kept in
+queries.py - every SQL / Snowpark call the Control Plane app makes, kept in
 one place so streamlit_app.py never writes SQL inline, only calls these
 named functions.
 
@@ -198,3 +198,4 @@ def generate_and_refine_artifacts(session: Session, ontology_schema: str) -> dic
         refine_result = f"ERROR: {exc}"
 
     return {"generate": gen_result, "refine": refine_result}
+
