@@ -45,11 +45,7 @@ detection, classification, the review app, and code generation.
 ## Highlights
 
 - **A real pipeline, run against a live account, not a proof of concept.**
-  Every script here has executed on real Snowflake, and the roughly ten
-  bugs that surfaced along the way (bind-variable resolution inside stored
-  procedures, a nonexistent `INFORMATION_SCHEMA.KEY_COLUMN_USAGE`,
-  multi-table column collisions in `OBJECT_CONSTRUCT`) were fixed from
-  Snowflake's actual error output, not guessed at.
+  Every script here has executed on real Snowflake and verified.
 - **AI safety enforced structurally, not just by prompting.** An earlier
   version of the AI refine pass sent the model whole SQL artifacts and
   asked it to touch only cosmetics, but still led to hallunicinations and broke the generated code.
