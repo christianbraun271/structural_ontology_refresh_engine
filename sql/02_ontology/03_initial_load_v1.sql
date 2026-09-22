@@ -17,7 +17,7 @@
 -- statements run strictly in sequence, never concurrently.
 -- =============================================================================
 
-SET DEMO_DB         = 'ORE_DEMO_DB';
+SET DEMO_DB         = 'ORE_DEMO_DB';  
 SET ONTOLOGY_SCHEMA = 'ORE_ONTOLOGY';
 SET SRC_SCHEMA      = 'ORE_SRC';
 
