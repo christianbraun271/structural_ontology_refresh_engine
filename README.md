@@ -42,6 +42,42 @@ See [`docs/structural_ontology_refresh_overview.pptx`](docs/structural_ontology_
 for a one-slide summary and five slides going one level deeper into
 detection, classification, the review app, and code generation.
 
+## Highlights
+
+- **A real pipeline, run against a live account, not a proof of concept.**
+  Every script here has executed on real Snowflake, and the roughly ten
+  bugs that surfaced along the way (bind-variable resolution inside stored
+  procedures, a nonexistent `INFORMATION_SCHEMA.KEY_COLUMN_USAGE`,
+  multi-table column collisions in `OBJECT_CONSTRUCT`) were fixed from
+  Snowflake's actual error output, not guessed at.
+- **AI safety enforced structurally, not just by prompting.** An earlier
+  version of the AI refine pass sent the model whole SQL artifacts and
+  asked it to touch only cosmetics, but still led to hallunicinations and broke the generated code.
+  The fix wasn't a better-worded
+  prompt, it was removing the opportunity: certain artifact types are
+  never sent to the model at all, and everywhere else its response schema
+  is narrowed to exactly one field it's allowed to touch. See
+  [`sql/05_codegen/02_ai_refine_artifacts.sql`](sql/05_codegen/02_ai_refine_artifacts.sql)'s
+  header for the full before/after.
+- **Idempotent by design.** A `SHA2` content hash on every candidate
+  proposal's fingerprint means re-running detection never creates
+  duplicate review-queue rows, even across repeated cycles over the same
+  schema drift.
+- **Two separate human gates, not one.** A business approval gate
+  (Streamlit review, approve, reject, defer) and a second, later technical
+  gate (a developer reviewing generated SQL before it ever runs). Approving
+  a change and trusting its generated code are treated as two different
+  decisions.
+- **Config-driven for privilege-constrained environments.** No
+  `CREATE DATABASE` is assumed; every script reads its database/schema
+  names from `SET` variables at the top, with a documented fallback
+  (`ORE_SOURCE_SCOPE`, a naming-prefix convention) for deployments that get
+  one shared schema rather than a private sandbox.
+- **A working control-plane app, not just backend scripts.**
+  Streamlit-in-Snowflake with two tabs (review, generate), backed entirely
+  by stored procedures the app calls rather than writing to state tables
+  directly, so every change is auditable through one code path.
+
 ## How it works
 
 - **Detect** — every cycle snapshots `INFORMATION_SCHEMA.COLUMNS` for the
