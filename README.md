@@ -13,6 +13,9 @@ developer) between generated code and anything actually running.
 represent* — new node types, edge types, and attributes — as distinct from a
 data-level refresh that keeps existing types populated with fresh rows.
 
+**Tech Stack: Source and Ontology Layer in Snowflake, Snowflake Cortex as LLM host, 
+llama3.1-70b as model, SQL and AI_COMPLETE for the processing logic, streamlit as UI**
+
 ## The idea
 
 Source systems change: a column gets added, a new table shows up, a
